@@ -64,7 +64,7 @@ def initialize():
 
         cashDate = ""
         print("\nPlease enter the date of the starting cash in YYYY-MM-DD format or cur/current for the current date.")
-        while cashDate := cashDate.lower().strip() not in ("cur","current") and not is_valid_date(cashDate.strip()):
+        while (cashDate := cashDate.lower().strip()) not in ("cur","current") and not is_valid_date(cashDate):
             cashDate = input("What is the date of the starting cash? ")
         if cashDate in ("cur","current"):
             config["Properties"]["Start_Date"] = get_current_date()
