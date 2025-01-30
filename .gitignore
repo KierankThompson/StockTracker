@@ -1,2 +1,3 @@
 *.csv
 properties.ini
+__pycache__/

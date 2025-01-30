@@ -73,7 +73,7 @@ def initialize():
         
     
         config["Transaction"] = {}
-        print("\nPlease enter the default transaction cost in basis points. You will also be asked if you want the transaction cost to be prompted for each transaction.")
+        print("\nPlease enter the default transaction cost in basis points.\nYou will also be asked if you want the transaction cost to be prompted for each transaction.\n")
         basisPoints = ""
         while not (basisPoints := basisPoints.strip()).isnumeric():
             basisPoints = input("How many basis points are the default cost of each transaction? ")
