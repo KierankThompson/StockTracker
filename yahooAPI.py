@@ -1,5 +1,6 @@
 import yfinance as yf
 from datetime import datetime, timedelta
+import sys
 
 
 
@@ -9,7 +10,12 @@ def getPrice(ticker,date):
     endDate = datetime.strptime(date, '%Y-%m-%d')
     endDate = endDate + timedelta(days=1)
     data = yf.Ticker(ticker).history(start=date, end=endDate)
-    closingPrice = data['Close'].iloc[0]
+    try:    
+        closingPrice = data['Close'].iloc[0]
+    except IndexError:
+        print(f"Error with stock: {ticker}")
+        print("exiting...")
+        exit(1)
     return closingPrice
 
 def getPrices(tickers,date):
@@ -21,15 +27,16 @@ def getPrices(tickers,date):
     stockPrices = {}
     for ticker in tickerArr:
         stockPrices[ticker] = getPrice(ticker, date).item()
-    print(stockPrices)
+    return stockPrices
 
 
     
 
 def main():
     date = '2025-01-24'
-    ticker = 'AAPL MRK KO'
-    getPrices(ticker,date)
+    ticker = 'MRK KO AAPL'
+    stocks = getPrices(ticker,date)
+    print(stocks)
 
 
 if __name__ == "__main__":
